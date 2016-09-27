@@ -1,0 +1,26 @@
+<md-content class="home-wrp" layout="row" layout-align="center stretch" layout-wrap>
+  <md-card class="phone-card" ng-repeat="phone in vm.phones">
+    <md-card-title>
+      <md-card-title-media>
+        <div class="md-media-lg card-media" layout-padding>
+          <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}"/>
+        </div>
+      </md-card-title-media>
+      <md-card-title-text>
+        <span class="md-headline" ng-bind="::phone.name"></span>
+        <span class="md-subhead" ng-bind="::phone.price|currency"></span>
+      </md-card-title-text>
+
+    </md-card-title>
+    <md-card-content>
+      <p ng-bind="::phone.snippet"></p>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-raised md-accent">
+        <md-icon md-font-icon="icon-cart-outline"></md-icon>
+        Add to Card
+      </md-button>
+    </md-card-actions>
+  </md-card>
+</md-content>
+
