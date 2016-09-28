@@ -2,8 +2,6 @@
 const _mdToast=new WeakMap();
 const _timeout=new WeakMap();
 
-
-
 class NotificationService {
 
     constructor($mdToast, $timeout)
@@ -21,7 +19,7 @@ class NotificationService {
                 _mdToast.get(this).simple()
                     .textContent(message)
                     .position('top right')
-                    .hideDelay(3000)
+                    .hideDelay(2000)
             )
         }, delay);
 
