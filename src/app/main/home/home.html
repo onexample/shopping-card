@@ -1,4 +1,4 @@
-<md-content class="home-wrp" layout="row" layout-align="center stretch" layout-wrap>
+<md-content layout="row" layout-align="center stretch" layout-wrap>
   <md-card class="phone-card" ng-repeat="phone in vm.phones">
     <md-card-title>
       <md-card-title-media>
@@ -16,9 +16,9 @@
       <p ng-bind="::phone.snippet"></p>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-raised md-accent">
+      <md-button class="md-raised md-accent" ng-click="vm.addToBucket(phone)">
         <md-icon md-font-icon="icon-cart-outline"></md-icon>
-        Add to Card
+        Add to Cart
       </md-button>
     </md-card-actions>
   </md-card>

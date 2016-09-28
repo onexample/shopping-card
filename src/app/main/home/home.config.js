@@ -11,8 +11,8 @@ export function homeConfig($stateProvider) {
           templateUrl: 'app/main/home/home.html',
           controller: 'HomeController as vm',
           resolve: {
-            phones: function (ShoppingCardService) {
-              return ShoppingCardService.getPhones()
+            phones: function (Api) {
+              return Api.getPhonesList()
             }
           }
         }
