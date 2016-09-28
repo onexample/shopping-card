@@ -1,24 +1,42 @@
-const _ShoppingBucketService=new WeakMap();
+const _ShoppingBucketService = new WeakMap();
+const _rootScope=new WeakMap();
+const _timeout=new WeakMap();
 
-class HomeController
-{
-  constructor (phones,ShoppingBucketService)
-  {
-    'ngInject';
+class HomeController {
+    constructor(phones, ShoppingBucketService,$rootScope,$timeout) {
+        'ngInject';
 
-    this.activate(phones);
-    _ShoppingBucketService.set(this,ShoppingBucketService);
-  }
+        this.filterType='all';
+        this.search='';
+        _rootScope.set(this,$rootScope);
+        _timeout.set(this,$timeout);
 
-  activate(phones)
-  {
-    this.phones=phones;
-  }
+        _ShoppingBucketService.set(this, ShoppingBucketService);
+        this.activate(phones);
+    }
 
-  addToBucket(item)
-  {
-    _ShoppingBucketService.get(this).addToBucket(item);
-  }
+    activate(phones) {
+        this.phones = phones;
+
+        _rootScope.get(this).$on('searchFired',(event,data)=>{
+            _timeout.get(this)( () => {
+                this.search = data;
+            },0)
+        })
+    }
+
+    addToBucket(item) {
+        _ShoppingBucketService.get(this).addToBucket(item);
+    }
+
+    filterFn(value)
+    {
+        if(value==='all')
+        {
+            return
+        }
+        return (item)=>item.type===value
+    }
 
 }
 

@@ -1,5 +1,14 @@
+<div layout="row" layout-align="center center" layout-padding>
+    <md-radio-group layout="row" ng-model="vm.filterType">
+
+        <md-radio-button value="all" class="md-primary">All</md-radio-button>
+        <md-radio-button value="phone" class="md-primary"> Phone </md-radio-button>
+        <md-radio-button value="tablet" class="md-primary">Tablet</md-radio-button>
+
+    </md-radio-group>
+</div>
 <md-content layout="row" layout-align="center stretch" layout-wrap>
-  <md-card class="phone-card" ng-repeat="phone in vm.phones">
+  <md-card class="phone-card" ng-repeat="phone in vm.phones | filter:vm.filterFn(vm.filterType) | filter:{name:vm.search}">
     <md-card-title>
       <md-card-title-media>
         <div class="md-media-lg card-media" layout-padding>
@@ -23,4 +32,6 @@
     </md-card-actions>
   </md-card>
 </md-content>
-
+<div layout="row" layout-align="center center" ng-if="vm.phones.length">
+    <p class="md-subhead">No results for "{{vm.search}}"</p>
+</div>
