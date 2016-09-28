@@ -1,4 +1,4 @@
-export function runBlock($log, $rootScope,$state) {
+export function runBlock($log, $rootScope) {
     'ngInject';
     $log.debug('runBlock end');
 
@@ -16,10 +16,14 @@ export function runBlock($log, $rootScope,$state) {
 
     });
 
-    let stateChangeSuccessEvent = $rootScope.$on('$stateChangeSuccess',  function (event, toState, toParams, fromState) {
+    let stateChangeSuccessEvent = $rootScope.$on('$stateChangeSuccess',  function (event, toState) {
         $rootScope.showSearch = toState.name==='app.home';
     })
 
+    $rootScope.$on('$destroy', function ()
+    {
+        stateChangeSuccessEvent();
+    });
 
 
 
