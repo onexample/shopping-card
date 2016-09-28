@@ -1,22 +1,25 @@
-/* global malarkey:false, moment:false */
-
+import { core } from './core/core.module.js';
+import { toolbar } from './toolbar/toolbar.module.js';
+import { home } from './main/home/home.module.js';
+import { shoppingBucket } from  './main/shopping-bucket/shopping.bucket.module.js'
+import { ApiPath } from './index.constant.js';
 import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
-import { MainController } from './main/main.controller';
-import { GithubContributorService } from '../app/components/githubContributor/githubContributor.service';
-import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
-import { NavbarDirective } from '../app/components/navbar/navbar.directive';
-import { MalarkeyDirective } from '../app/components/malarkey/malarkey.directive';
+import { MainController } from './main/main.controller.js';
+import { Api } from './index.api.js';
 
-angular.module('shoppingCard', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ui.router', 'ngMaterial', 'toastr'])
-  .constant('malarkey', malarkey)
-  .constant('moment', moment)
-  .config(config)
-  .config(routerConfig)
-  .run(runBlock)
-  .service('githubContributor', GithubContributorService)
-  .service('webDevTec', WebDevTecService)
-  .controller('MainController', MainController)
-  .directive('acmeNavbar', NavbarDirective)
-  .directive('acmeMalarkey', MalarkeyDirective);
+angular.module('shoppingCard', [
+        core.name,
+        toolbar.name,
+        home.name,
+        shoppingBucket.name
+    ])
+    .constant('ApiPath', ApiPath)
+    .config(config)
+    .config(routerConfig)
+    .run(runBlock)
+    .service('Api', Api)
+    .controller('MainController', MainController)
+
+
