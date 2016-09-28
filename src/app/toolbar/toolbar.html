@@ -1,3 +1,26 @@
-<div class="md-toolbar-tools">
-  <h2>Hello</h2>
+<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+    <h2 hide-xs>Phone List</h2>
+    <div class="search-input-wrapper" layout="row" layout-align="start center" ng-if="$root.showSearch">
+        <label for="search">
+            <md-icon md-font-icon="icon-magnify"></md-icon>
+        </label>
+        <md-input-container flex md-no-float class="m-0">
+            <input id="search"
+                   placeholder="Search.."
+                   type="text"
+                   md-minlength="3"
+                   ng-model-options='{ debounce: 500}'
+                   ng-model="vm.search"
+                   ng-change="vm.searchForPhone()">
+        </md-input-container>
+        <md-button class="md-icon-button" ng-if="vm.search" ng-click="vm.clearSearchField()">
+            <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+    </div>
+    <div class="mr-32">
+    <md-button class="md-fab " aria-label="Eat cake" layout="row" ui-sref="app.shopping_bucket">
+        <md-icon md-font-icon="icon-cart"></md-icon>
+        <span ng-if="vm.total">({{vm.total}})</span>
+    </md-button>
+    </div>
 </div>
